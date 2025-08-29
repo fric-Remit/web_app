@@ -59,3 +59,9 @@ Ensuite, à la racine du projet, lancez : `json-server --watch db.json --port 30
 ---
 
 ## Configuration Proxy (./proxy.conf.json)
+
+## Liens FIGMA pour le design
+
+Dashboard : `https://www.figma.com/make/zS9puvDTtPffZZ0ruJCL8a/User-Dashboard?node-id=0-1&p=f&t=e7p3qpZrJNuV7Wr4-0&fullscreen=1`
+
+Login : `https://www.figma.com/make/FS0QyxNlBaDGq6HnpwHi8c/Login?node-id=0-1&p=f&t=ED3krclaNX9FAtXg-0&fullscreen=1`
