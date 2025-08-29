@@ -1,0 +1,9 @@
+<div *ngIf="open" class="alert-dialog-portal" (keydown.escape)="close()" tabindex="-1">
+  <div class="alert-dialog-overlay" (click)="close()"></div>
+  <div class="alert-dialog-content" role="alertdialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
+    <ng-content select="[alert-dialog-header]"></ng-content>
+    <ng-content select="[alert-dialog-title]" id="dialog-title"></ng-content>
+    <ng-content select="[alert-dialog-description]" id="dialog-desc"></ng-content>
+    <ng-content select="[alert-dialog-footer]"></ng-content>
+  </div>
+</div>

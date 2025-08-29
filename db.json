@@ -1,0 +1,231 @@
+{
+  "auth": [
+    {
+      "username": "alice",
+      "password": "password123",
+      "token": "ey.mock.token",
+      "user": {
+        "id": "u_1",
+        "name": "Alice T.",
+        "role": "user"
+      }
+    }
+  ],
+  "accounts": [
+    {
+      "id": "acc_1",
+      "type": "current",
+      "currency": "XAF",
+      "balance": 542300,
+      "name": "Compte Courant Principal",
+      "accountNumber": "FR76 1234 5678 9012 3456 789"
+    },
+    {
+      "id": "acc_2",
+      "type": "savings",
+      "currency": "XAF",
+      "balance": 1200000,
+      "name": "Compte d'Epargne",
+      "accountNumber": "FR76 9876 5432 1098 7654 321"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "1",
+      "accountId": "1",
+      "amount": -45.2,
+      "type": "debit",
+      "category": "Alimentation",
+      "description": "Achat Supermarché Carrefour",
+      "date": "2025-08-15T10:30:00Z",
+      "recipient": "CARREFOUR PARIS 15"
+    },
+    {
+      "id": "2",
+      "accountId": "1",
+      "amount": 2500,
+      "type": "credit",
+      "category": "Salaire",
+      "description": "Virement salaire",
+      "date": "2025-08-01T09:00:00Z",
+      "recipient": "ENTREPRISE ABC"
+    },
+    {
+      "id": "3",
+      "accountId": "1",
+      "amount": -850,
+      "type": "debit",
+      "category": "Logement",
+      "description": "Loyer Août",
+      "date": "2025-08-03T08:00:00Z",
+      "recipient": "AGENCE IMMOBILIERE XYZ"
+    },
+    {
+      "id": "4",
+      "accountId": "2",
+      "amount": 500,
+      "type": "transfer",
+      "category": "Épargne",
+      "description": "Virement vers Livret A",
+      "date": "2025-08-10T14:20:00Z",
+      "reference": "VIR123456"
+    },
+    {
+      "id": "5",
+      "accountId": "3",
+      "amount": 1200,
+      "type": "credit",
+      "category": "Facture",
+      "description": "Paiement client DEF",
+      "date": "2025-08-12T16:45:00Z",
+      "recipient": "CLIENT DEF SARL"
+    },
+    {
+      "id": "6",
+      "accountId": "1",
+      "amount": -120.5,
+      "type": "debit",
+      "category": "Transport",
+      "description": "Plein essence",
+      "date": "2025-08-08T18:30:00Z",
+      "recipient": "STATION TOTAL"
+    },
+    {
+      "id": "7",
+      "accountId": "1",
+      "amount": -35,
+      "type": "debit",
+      "category": "Loisirs",
+      "description": "Cinéma UGC",
+      "date": "2025-08-07T20:15:00Z",
+      "recipient": "UGC CINEMA"
+    },
+    {
+      "id": "8",
+      "accountId": "2",
+      "amount": 25.3,
+      "type": "credit",
+      "category": "Intérêts",
+      "description": "Intérêts Livret A",
+      "date": "2025-08-30T23:59:00Z"
+    },
+    {
+      "id": "9",
+      "accountId": "3",
+      "amount": -450,
+      "type": "debit",
+      "category": "Fournitures",
+      "description": "Achat matériel bureau",
+      "date": "2025-08-05T11:20:00Z",
+      "recipient": "OFFICE DEPOT"
+    },
+    {
+      "id": "10",
+      "accountId": "1",
+      "amount": -89.99,
+      "type": "debit",
+      "category": "Télécoms",
+      "description": "Facture mobile Orange",
+      "date": "2025-08-03T12:00:00Z",
+      "recipient": "ORANGE FRANCE"
+    },
+    {
+      "id": "11",
+      "accountId": "1",
+      "amount": -25.9,
+      "type": "debit",
+      "category": "Alimentation",
+      "description": "Boulangerie du Coin",
+      "date": "2025-08-14T07:30:00Z",
+      "recipient": "BOULANGERIE MARTIN"
+    },
+    {
+      "id": "12",
+      "accountId": "3",
+      "amount": 750,
+      "type": "credit",
+      "category": "Facture",
+      "description": "Paiement client GHI",
+      "date": "2025-08-11T10:15:00Z",
+      "recipient": "CLIENT GHI SAS"
+    },
+    {
+      "id": "13",
+      "accountId": "1",
+      "amount": -65,
+      "type": "debit",
+      "category": "Santé",
+      "description": "Pharmacie Central",
+      "date": "2025-08-09T14:45:00Z",
+      "recipient": "PHARMACIE CENTRAL"
+    },
+    {
+      "id": "14",
+      "accountId": "2",
+      "amount": -200,
+      "type": "transfer",
+      "category": "Virement",
+      "description": "Retrait pour urgence",
+      "date": "2025-08-06T16:20:00Z",
+      "reference": "VIR789012"
+    },
+    {
+      "id": "15",
+      "accountId": "3",
+      "amount": -1200,
+      "type": "debit",
+      "category": "Taxes",
+      "description": "TVA Trimestre 4",
+      "date": "2025-08-04T09:30:00Z",
+      "recipient": "DIRECTION GENERALE DES FINANCES"
+    },
+    {
+      "id": "16",
+      "accountId": "1",
+      "amount": -145.75,
+      "type": "debit",
+      "category": "Services",
+      "description": "Assurance auto",
+      "date": "2025-08-02T11:00:00Z",
+      "recipient": "AXA ASSURANCES"
+    },
+    {
+      "id": "17",
+      "accountId": "1",
+      "amount": 50,
+      "type": "credit",
+      "category": "Remboursement",
+      "description": "Remboursement Sécu",
+      "date": "2025-08-29T15:30:00Z",
+      "recipient": "CPAM PARIS"
+    },
+    {
+      "id": "18",
+      "accountId": "3",
+      "amount": 2100,
+      "type": "credit",
+      "category": "Facture",
+      "description": "Prestation consultant",
+      "date": "2025-08-28T17:45:00Z",
+      "recipient": "CABINET CONSEIL ABC"
+    }
+  ],
+  "transferRequests": [
+    {
+      "id": "47f6",
+      "fromAccountId": "acc_2",
+      "toAccountNumber": "acc_1",
+      "note": "Rien à rajouter",
+      "currency": "XAF",
+      "amount": 1500
+    },
+    {
+      "id": "b427",
+      "fromAccountId": "acc_2",
+      "toAccountNumber": "acc_1",
+      "note": "grgrreer",
+      "currency": "XAF",
+      "amount": 1000
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+<div class="accordion-item border-b last:border-b-0">
+  <div class="accordion-trigger flex justify-between items-center py-4 cursor-pointer"
+       (click)="toggle()" 
+       [attr.aria-expanded]="isOpen">
+    <ng-content select="[accordion-trigger]"></ng-content>
+    <span [class.rotate-180]="isOpen" class="icon-chevron">&#9662;</span>
+  </div>
+  <div
+    class="accordion-content overflow-hidden text-sm"
+    [style.height]="isOpen ? 'auto' : '0'"
+    [attr.aria-hidden]="!isOpen"
+  >
+    <div class="p-4">
+      <ng-content select="[accordion-content]"></ng-content>
+    </div>
+  </div>
+</div>

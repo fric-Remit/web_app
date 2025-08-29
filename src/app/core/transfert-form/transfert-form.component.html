@@ -1,0 +1,67 @@
+<form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="space-y-4">
+  <div class="grid gap-4 md:grid-cols-2">
+    <!-- Compte émetteur -->
+    <div class="space-y-2">
+      <label for="fromAccountId">Compte émetteur</label>
+      <select formControlName="fromAccountId" id="fromAccountId">
+        <option value="" disabled>Sélectionner un compte</option>
+        <option *ngFor="let account of accounts" [value]="account.id">
+          {{ account.name }} - Solde: {{ formatAmount(account.balance) }}
+        </option>
+      </select>
+      <div *ngIf="errors.fromAccountId" class="text-red-600">{{ errors.fromAccountId }}</div>
+      <div *ngIf="transferForm.get('fromAccountId')?.value" class="text-muted">
+        Solde disponible : {{ formatAmount(getSelectedAccountBalance()) }}
+      </div>
+    </div>
+
+    <!-- Compte destinataire -->
+    <div class="space-y-2">
+      <label for="toAccountId">Compte destinataire</label>
+      <select formControlName="toAccountId" id="toAccountId">
+        <option value="" disabled>Sélectionner un compte</option>
+        <option *ngFor="let account of availableAccounts" [value]="account.id" [disabled]="account.id === transferForm.get('fromAccountId')?.value">
+          {{ account.name }}
+        </option>
+      </select>
+      <div *ngIf="errors.toAccountId" class="text-red-600">{{ errors.toAccountId }}</div>
+    </div>
+  </div>
+
+  <!-- Montant -->
+  <div class="space-y-2">
+    <label for="amount">Montant (€)</label>
+    <input id="amount" type="number" formControlName="amount" step="0.01" min="0" />
+    <div *ngIf="errors.amount" class="text-red-600">{{ errors.amount }}</div>
+  </div>
+
+  <!-- Description -->
+  <div class="space-y-2">
+    <label for="description">Description *</label>
+    <textarea id="description" formControlName="description" rows="3"></textarea>
+    <div *ngIf="errors.description" class="text-red-600">{{ errors.description }}</div>
+  </div>
+
+  <!-- Bouton submit -->
+  <button type="submit" [disabled]="isProcessing" class="btn btn-primary w-full">
+    Effectuer le virement
+  </button>
+</form>
+
+<!-- Dialog confirmation -->
+<div *ngIf="isConfirmOpen" class="dialog-backdrop">
+  <div class="dialog">
+    <h3>Confirmation du virement</h3>
+    <p>Veuillez vérifier les informations du virement avant de confirmer.</p>
+    <ul>
+      <li><strong>De:</strong> {{ getAccountName(transferForm.get('fromAccountId')?.value) }}</li>
+      <li><strong>Vers:</strong> {{ getAccountName(transferForm.get('toAccountId')?.value) }}</li>
+      <li><strong>Montant:</strong> {{ formatAmount(transferForm.get('amount')?.value) }}</li>
+      <li><strong>Description:</strong> {{ transferForm.get('description')?.value }}</li>
+    </ul>
+    <button (click)="onCancelConfirm()" [disabled]="isProcessing">Annuler</button>
+    <button (click)="onConfirmTransfer()" [disabled]="isProcessing">
+      {{ isProcessing ? 'Traitement...' : 'Confirmer le virement' }}
+    </button>
+  </div>
+</div>

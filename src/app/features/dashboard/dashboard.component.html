@@ -1,0 +1,61 @@
+<div class="min-h-screen bg-background">
+  <div class="container mx-auto py-6 space-y-6">
+    <!-- Header -->
+    <div class="space-y-2">
+      <h1>Dashboard Bancaire</h1>
+      <p class="text-muted-foreground">
+        Gérez vos comptes, transactions et effectuez des virements
+      </p>
+      <div class="p-4 bg-primary/5 rounded-lg border">
+        <div class="flex items-center gap-2">
+          <svg class="h-5 w-5 text-primary"><use href="#wallet-icon"></use></svg>
+          <span class="text-sm text-muted-foreground">Patrimoine total:</span>
+          <span class="font-medium text-lg">{{ formatAmount(totalBalance) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs navigation -->
+    <div class="grid w-full grid-cols-3 border-b border-gray-300">
+      <button
+        class="flex items-center gap-2 p-2 text-[#00d0c3] border-b-2"
+        [class.border-b-[#00d0c3]="activeTab === 'accounts'"
+        (click)="activeTab = 'accounts'"
+      >
+        <svg class="h-4 w-4"><use href="#wallet-icon"></use></svg>
+        Comptes
+      </button>
+      
+      <button
+        class="flex items-center gap-2 p-2 text-[#00d0c3] border-b-2"
+        [class.border-b-[#00d0c3]="activeTab === 'transactions'"
+        (click)="activeTab = 'transactions'"
+      >
+        <svg class="h-4 w-4"><use href="#receipt-icon"></use></svg>
+        Transactions
+      </button>
+      
+      <button
+        class="flex items-center gap-2 p-2 text-[#00d0c3] border-b-2"
+        [class.border-b-[#00d0c3]="activeTab === 'transfer'"
+        (click)="activeTab = 'transfer'"
+      >
+        <svg class="h-4 w-4"><use href="#arrow-left-right-icon"></use></svg>
+        Virement
+      </button>
+    </div>
+
+    <!-- Tabs content -->
+    <div *ngIf="activeTab === 'accounts'">
+      <app-account-list [accounts]="accounts"></app-account-list>
+    </div>
+    <div *ngIf="activeTab === 'transactions'">
+      <app-transactions-list [transactions]="transactions" [accounts]="accounts"></app-transactions-list>
+    </div>
+    <div *ngIf="activeTab === 'transfer'">
+      <div class="max-w-2xl mx-auto">
+        <app-transfert-form [accounts]="accounts" (onTransferSubmit)="onTransferSubmit($event)"></app-transfert-form>
+      </div>
+    </div>
+  </div>
+</div>

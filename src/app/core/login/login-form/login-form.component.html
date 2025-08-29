@@ -1,0 +1,54 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+
+  <div class="space-y-2">
+    <label for="username" class="text-black">Username</label>
+    <input 
+      id="username" 
+      type="text" 
+      placeholder="Votre username" 
+      formControlName="username"
+      class="bg-white border-gray-200 focus:border-[#00d0c3] focus:ring-[#00d0c3] text-black"
+      required
+    />
+    <ng-template *ngIf="username?.invalid && username?.touched">
+      <div class="text-red-600 text-sm">
+        Username invalide ou requis
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="space-y-2">
+    <label for="password" class="text-black">Mot de passe</label>
+    <input 
+      id="password" 
+      type="password" 
+      placeholder="Mot de passe" 
+      formControlName="password"
+      class="bg-white border-gray-200 focus:border-[#00d0c3] focus:ring-[#00d0c3] text-black"
+      required
+    />
+    <ng-template *ngIf="password?.invalid && password?.touched">
+      <div class="text-red-600 text-sm">
+        Mot de passe requis
+      </div>
+    </ng-template>
+  </div>
+
+  <button 
+    type="submit"
+    class="w-full bg-[#00d0c3] hover:bg-[#00b8ac] text-white transition-colors duration-200"
+    [disabled]="loginForm.invalid"
+  >
+    Se connecter
+  </button>
+
+</form>
+
+<div class="flex flex-col space-y-3 text-center mt-6 text-gray-600 text-sm">
+  <a href="#" class="text-[#00d0c3] hover:text-[#00b8ac] underline transition-colors duration-200">
+    Mot de passe oublié ?
+  </a>
+  <span>
+    Pas encore de compte ? <a href="#" class="text-[#00d0c3] hover:text-[#00b8ac] underline transition-colors duration-200">S'inscrire</a>
+  </span>
+</div>

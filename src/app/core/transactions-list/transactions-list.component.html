@@ -1,0 +1,104 @@
+<app-card>
+  <app-card-header>
+    <app-card-title>Transactions</app-card-title>
+
+    <div class="flex flex-col sm:flex-row gap-4">
+      <div class="flex-1 relative">
+        <input
+          type="text"
+          placeholder="Rechercher une transaction..."
+          (input)="onSearchTermChange($event)"
+          class="pl-8"
+        />
+        <span class="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground">
+          <!-- Icon search can be svg or font icon -->
+          🔍
+        </span>
+      </div>
+
+      <select (change)="onTypeFilterChange($event)" [value]="typeFilter" class="w-[140px]">
+        <option value="all">Tous types</option>
+        <option value="credit">Crédit</option>
+        <option value="debit">Débit</option>
+        <option value="transfer">Virement</option>
+      </select>
+
+      <select (change)="onAccountFilterChange($event)" [value]="accountFilter" class="w-[180px]">
+        <option value="all">Tous comptes</option>
+        <option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</option>
+      </select>
+
+      <select (change)="onDateFilterChange($event)" [value]="dateFilter" class="w-[140px]">
+        <option value="all">Toutes</option>
+        <option value="today">Aujourd'hui</option>
+        <option value="week">7 derniers jours</option>
+        <option value="month">30 derniers jours</option>
+      </select>
+    </div>
+  </app-card-header>
+
+  <app-card-content>
+    <table>
+      <thead>
+        <tr>
+          <th (click)="handleSort('date')" class="cursor-pointer select-none">
+            <div class="flex items-center gap-1">
+              Date
+              <!-- Icon arrow up/down -->
+              ⬍
+            </div>
+          </th>
+          <th>Compte</th>
+          <th (click)="handleSort('description')" class="cursor-pointer select-none">
+            <div class="flex items-center gap-1">
+              Description
+              ⬍
+            </div>
+          </th>
+          <th>Type</th>
+          <th>Catégorie</th>
+          <th (click)="handleSort('amount')" class="text-right cursor-pointer select-none">
+            <div class="flex items-center justify-end gap-1">
+              Montant
+              ⬍
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of paginatedTransactions">
+          <td>{{ formatDate(transaction.date) }}</td>
+          <td class="text-sm text-muted-foreground">{{ getAccountName(transaction.accountId) }}</td>
+          <td>
+            <div>
+              <div>{{ transaction.description }}</div>
+              <div *ngIf="transaction.recipient" class="text-xs text-muted-foreground">
+                {{ transaction.recipient }}
+              </div>
+            </div>
+          </td>
+          <td>
+            <span [ngClass]="getTransactionTypeBadgeVariant(transaction.type)">
+              {{ getTransactionTypeLabel(transaction.type) }}
+            </span>
+          </td>
+          <td class="text-sm text-muted-foreground">{{ transaction.category }}</td>
+          <td class="text-right">
+            <span [ngClass]="transaction.amount >= 0 ? 'text-[#00d0c3]' : 'text-red-600'">
+              {{ formatAmount(transaction.amount) }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="totalPages > 1" class="flex items-center justify-between mt-4">
+      <div class="text-sm text-muted-foreground">{{ filteredAndSortedTransactions.length }} transaction(s) trouvée(s)</div>
+      <div class="flex items-center gap-2">
+        <button (click)="previousPage()" [disabled]="currentPage === 1">Précédent</button>
+        <span class="text-sm">Page {{ currentPage }} sur {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">Suivant</button>
+      </div>
+    </div>
+  </app-card-content>
+</app-card>

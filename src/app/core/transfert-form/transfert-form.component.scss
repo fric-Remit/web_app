@@ -1,0 +1,29 @@
+.text-red-600 {
+  color: #dc2626;
+}
+.dialog-backdrop {
+  position: fixed;
+  top: 0; left: 0; right:0; bottom:0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dialog {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+}
+.btn {
+  padding: 8px 12px;
+}
+.btn-primary {
+  background-color: #00d0c3;
+  color: white;
+}
+.btn-primary[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
